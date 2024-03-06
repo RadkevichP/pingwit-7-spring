@@ -1,7 +1,6 @@
 package pl.pingwit.springdemo.repository;
 
-import org.springframework.stereotype.Repository;
-import pl.pingwit.springdemo.controller.UserDto;
+import org.springframework.stereotype.Component;
 import pl.pingwit.springdemo.exception.PingwitException;
 
 import javax.sql.DataSource;
@@ -10,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@Repository
+@Component
 public class UserRepository {
     private final DataSource dataSource;
 
@@ -19,10 +18,8 @@ public class UserRepository {
     }
 
     public List<User> findAllUsers() {
-        try {
-            Connection connection = dataSource.getConnection();
 
-            Statement statement = connection.createStatement();
+        try (Statement statement = dataSource.getConnection().createStatement()) {
             ResultSet rs = statement.executeQuery("""
                     SELECT id, name, surname, email, phone
                     FROM users;
@@ -91,6 +88,24 @@ public class UserRepository {
         }
     }
 
+    public void updateUser(User userToUpdate) {
+        // update user by id
+        String updateRequest = """
+                UPDATE users
+                SET surname = ?, email = ?, phone = ?
+                WHERE id = ?;
+                """;
+        try (PreparedStatement statement = dataSource.getConnection().prepareStatement(updateRequest)) {
+            statement.setString(1, userToUpdate.surname());
+            statement.setString(2, userToUpdate.email());
+            statement.setString(3, userToUpdate.phone());
+            statement.setInt(4, userToUpdate.id());
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public void deleteUser(Integer id) {
         try {
             Connection connection = dataSource.getConnection();
@@ -116,6 +131,4 @@ public class UserRepository {
             throw new RuntimeException(e);
         }
     }
-
-
 }

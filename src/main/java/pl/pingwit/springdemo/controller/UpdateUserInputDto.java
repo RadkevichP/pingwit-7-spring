@@ -1,30 +1,12 @@
 package pl.pingwit.springdemo.controller;
 
-import jakarta.validation.constraints.Digits;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
+import java.util.Objects;
 
-public class CreateUserInputDto {
+public class UpdateUserInputDto {
 
-    @NotBlank(message = "Username can't be empty or null")
-    private String name;
-
-    @NotBlank
     private String surname;
-
-    @Email
     private String email;
-
-    //@Digits(message = "Phone number can contain digits only")
     private String phone;
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 
     public String getSurname() {
         return surname;
@@ -48,5 +30,18 @@ public class CreateUserInputDto {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        UpdateUserInputDto that = (UpdateUserInputDto) o;
+        return Objects.equals(surname, that.surname) && Objects.equals(email, that.email) && Objects.equals(phone, that.phone);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(surname, email, phone);
     }
 }
