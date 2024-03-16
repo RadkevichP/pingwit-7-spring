@@ -2,6 +2,7 @@ package pl.pingwit.springdemo.config;
 
 import com.zaxxer.hikari.HikariDataSource;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -10,16 +11,16 @@ import javax.sql.DataSource;
 @Configuration
 public class DataSourceConfig {
 
-    @Value("${spring.datasource.url}")
+  /*  @Value("${pingwit.datasource.url}")
     private String url;
 
-    @Value("${spring.datasource.username}")
+    @Value("${pingwit.datasource.username}")
     private String username;
 
-    @Value("${spring.datasource.password}")
-    private String password;
+    @Value("${pingwit.datasource.password}")
+    private String password;*/
 
-    @Bean
+ /*   @Bean
     public DataSource dataSource() {
         HikariDataSource ds = new HikariDataSource();
 
@@ -27,5 +28,5 @@ public class DataSourceConfig {
         ds.setUsername(username);
         ds.setPassword(password);
         return ds;
-    }
+    }*/
 }

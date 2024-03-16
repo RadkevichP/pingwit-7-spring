@@ -28,16 +28,23 @@
 		</dependency>
 
 		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+
+		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
 			<version>3.13.0</version>
 		</dependency>
 
+		<!--
+		Эта зависимость не нужна после добавления Spring Data JPA в проект
 		<dependency>
 			<groupId>com.zaxxer</groupId>
 			<artifactId>HikariCP</artifactId>
 			<version>5.0.1</version>
-		</dependency>
+		</dependency>-->
 
 		<dependency>
 			<groupId>org.postgresql</groupId>

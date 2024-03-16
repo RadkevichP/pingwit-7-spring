@@ -1,0 +1,7 @@
+JPA Java Persistence Api
+
+Hibernate (ORM framework)
+
+ORM Object-to-Relational Mapping
+
+DI Dependency Injection
