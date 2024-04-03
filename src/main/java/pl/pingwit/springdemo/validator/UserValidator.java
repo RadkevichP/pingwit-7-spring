@@ -2,7 +2,7 @@ package pl.pingwit.springdemo.validator;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
-import pl.pingwit.springdemo.controller.CreateUserInputDto;
+import pl.pingwit.springdemo.controller.user.CreateUserInputDto;
 import pl.pingwit.springdemo.exception.PingwitValidationException;
 
 import java.util.ArrayList;
